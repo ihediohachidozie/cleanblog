@@ -16,7 +16,7 @@ class ContactForm(forms.Form):
         fullname = self.cleaned_data["name"]
         email = self.cleaned_data["email"]
         subject = self.cleaned_data["subject"]
-        message = self.cleaned_data["message"] + "\nFrom:\n" + fullname + "\nEmail:\n" + email
+        message = self.cleaned_data["message"] + "\nFrom: " + fullname + "\nEmail: " + email
         recipients = ["ihediohachidozie@gmail.com"]
 
         if not fullname:
