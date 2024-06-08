@@ -141,8 +141,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # setup env variable to store below values
 
-EMAIL_HOST_USER = os.environ.get('USERNAME', 'ihediohadozie@gmail.com' ) #  config["USERNAME"]
-EMAIL_HOST_PASSWORD = os.getenv('PASSWORD', 'qjfm utcr esjs nisa')# config["PASSWORD"]
+EMAIL_HOST_USER = os.environ.get('USERNAME', '' ) #  config["USERNAME"]
+EMAIL_HOST_PASSWORD = os.getenv('PASSWORD', '')# config["PASSWORD"]
 
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
