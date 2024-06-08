@@ -31,4 +31,7 @@ def sendmail(request):
             messages.success(request, f'Thank you. Your message is sent!')
             return HttpResponseRedirect(reverse('cleanblog:contact'))
         else:
-            print('bad content')
+            # modify to send back the form with the error message..
+            # return HttpResponse('bad content')
+            form = ContactForm()
+            return render(request, 'cleanblog/contact.html', {'form': form})

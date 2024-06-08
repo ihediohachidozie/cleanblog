@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 from dotenv import dotenv_values
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +31,7 @@ SECRET_KEY = "django-insecure-gwrp+3%_c9+sjvu0b0705^&=58@0eisty97#3%3mywbx(7@fge
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -122,6 +124,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# The URL to use when referring to static files (where they will be served from)
 STATIC_URL = "static/"
 
 # Default primary key field type
@@ -135,5 +141,14 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # setup env variable to store below values
 
-EMAIL_HOST_USER = config["USERNAME"]
-EMAIL_HOST_PASSWORD = config["PASSWORD"]
+EMAIL_HOST_USER = os.environ.get('USERNAME', 'ihediohadozie@gmail.com' ) #  config["USERNAME"]
+EMAIL_HOST_PASSWORD = os.getenv('PASSWORD', 'qjfm utcr esjs nisa')# config["PASSWORD"]
+
+# Static file serving.
+# https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
